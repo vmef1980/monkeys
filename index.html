@@ -11,93 +11,78 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: url("img/Monkeys.jpg") no-repeat center center fixed;
-      background-size: cover;
+      background-color: #000;
       overflow: hidden;
+      perspective: 1000px; /* para efecto 3D */
     }
 
-    .overlay {
-      background-color: rgba(0,0,0,0.6);
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      animation: fadeZoom 3s ease forwards;
+    .logo {
+      max-width: 80vw;
+      max-height: 60vh;
+      width: auto;
+      height: auto;
+      opacity: 0;
+      filter: blur(20px);
+      transform: scale(0.5) rotateY(0deg);
+      animation: modernAppear 5s ease forwards;
     }
 
-    .monkeys {
-      display: flex;
-      gap: 40px;
+    @keyframes modernAppear {
+      0% {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(0.5) rotateY(0deg);
+      }
+      50% {
+        opacity: 1;
+        filter: blur(5px);
+        transform: scale(1.2) rotateY(180deg);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1) rotateY(360deg);
+      }
     }
-
-    .monkey {
-      width: 140px;
-      height: 140px;
-      animation: swing 2s ease-in-out infinite alternate;
-    }
-
-    .monkey:nth-child(2) { animation-delay: 0.3s; }
-    .monkey:nth-child(3) { animation-delay: 0.6s; }
 
     h1 {
-      margin-top: 30px;
+      position: absolute;
+      bottom: 5vh;
       color: gold;
       font-family: 'Arial Black', sans-serif;
-      font-size: 2em;
+      font-size: 5vw;
       text-shadow: 2px 2px 8px black;
       opacity: 0;
-      animation: fadeInText 2s ease forwards 1.5s;
-    }
-
-    @keyframes fadeZoom {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+      animation: fadeInText 2s ease forwards 3s;
+      text-align: center;
     }
 
     @keyframes fadeInText {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes swing {
-      0% { transform: rotate(-10deg) scale(0.95); }
-      100% { transform: rotate(10deg) scale(1.05); }
+    /* Ajustes para pantallas pequeñas */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 7vw;
+      }
+      .logo {
+        max-width: 90vw;
+        max-height: 50vh;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="monkeys">
-      <!-- Monos SVG estilizados -->
-      <svg class="monkey" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="gold" stroke="black" stroke-width="3"/>
-        <circle cx="35" cy="45" r="8" fill="black"/>
-        <circle cx="65" cy="45" r="8" fill="black"/>
-        <path d="M35 65 Q50 80 65 65" stroke="black" stroke-width="3" fill="none"/>
-      </svg>
-      <svg class="monkey" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="gold" stroke="black" stroke-width="3"/>
-        <rect x="30" y="40" width="40" height="15" fill="black"/>
-        <path d="M35 65 Q50 80 65 65" stroke="black" stroke-width="3" fill="none"/>
-      </svg>
-      <svg class="monkey" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="gold" stroke="black" stroke-width="3"/>
-        <circle cx="35" cy="45" r="8" fill="black"/>
-        <circle cx="65" cy="45" r="8" fill="black"/>
-        <path d="M30 70 Q50 90 70 70" stroke="black" stroke-width="5" fill="none"/>
-      </svg>
-    </div>
-    <h1>MONKEYS KITCHEN</h1>
-  </div>
+  <img src="img/Monkeys.jpg" alt="Monkeys Kitchen Logo" class="logo">
+  <h1>MONKEYS KITCHEN</h1>
 
   <script>
-    // Redirige al PDF después de 6 segundos
+    // Redirige al PDF después de 7 segundos
     setTimeout(() => {
       window.location.href = "MonkeysMenu-v0.pdf";
-    }, 6000);
+    }, 7000);
   </script>
 </body>
 </html>
